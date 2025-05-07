@@ -61,23 +61,52 @@ export const fetchAllBooks = () => async (dispatch) => {
     });
 };
 
+// export const addBook = (data) => async (dispatch) => {
+//   dispatch(bookSlice.actions.addBookRequest());
+//   await axios
+//     .post("http://localhost:4000/api/v1/book/admin/add", {
+//       withCredentials: true,
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     })
+//     .then((res) => {
+//       bookSlice.actions.addBookSuccess(res.data.message);
+//       toast.success(res.data.message);
+//       dispatch(toggleAddBookPopup());
+//       dispatch(fetchAllBooks());
+//     })
+//     .catch((err) => {
+//       dispatch(bookSlice.actions.addBookFailed(err.response.data.message));
+//     });
+// };
+
 export const addBook = (data) => async (dispatch) => {
   dispatch(bookSlice.actions.addBookRequest());
+
   await axios
-    .post("http://localhost:4000/api/v1/book/admin/add", {
-      withCredentials: true,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    .post(
+      "http://localhost:4000/api/v1/book/admin/add",
+      data, // ✅ This is the actual request body
+      {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json", // ✅ or omit if using FormData
+        },
+      }
+    )
     .then((res) => {
-      bookSlice.actions.addBookSuccess(res.data.message);
+      dispatch(bookSlice.actions.addBookSuccess(res.data.message)); // ✅ fixed missing dispatch
       toast.success(res.data.message);
       dispatch(toggleAddBookPopup());
       dispatch(fetchAllBooks());
     })
     .catch((err) => {
-      dispatch(bookSlice.actions.addBookFailed(err.response.data.message));
+      dispatch(
+        bookSlice.actions.addBookFailed(
+          err.response?.data?.message || "Something went wrong"
+        )
+      );
     });
 };
 
