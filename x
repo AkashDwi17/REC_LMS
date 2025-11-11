@@ -1,0 +1,27 @@
+PORT=4000
+
+FRONTEND_URL=http://localhost:5173
+
+MONGO_URI=mongodb://127.0.0.1:27017
+
+SMTP_HOST = smtp.gmail.com
+
+SMTP_SERVICE = gmail
+
+SMTP_PORT = 465
+
+SMTP_MAIL=akashdwivedi9589@gmail.com
+
+SMTP_PASSWORD=svmy vqym ujku ulem
+
+JWT_SECRET_KEY=your_jwt_secret_key
+
+JWT_EXPIRE=3d
+
+COOKIE_EXPIRE=3
+
+CLOUDINARY_CLIENT_NAME=dydlw96ye
+
+CLOUDINARY_CLIENT_API=613683538741515
+
+CLOUDINARY_CLIENT_SECRET=7uBytFXTb83k2Bat5VrOVaoQaP0
